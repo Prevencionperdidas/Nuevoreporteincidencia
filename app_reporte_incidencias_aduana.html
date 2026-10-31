@@ -122,12 +122,13 @@
 
 </div>
 
+<div id="verInfo" style="text-align:center;color:#888;font-size:11px;padding:8px 0 24px;"></div>
 <div class="toast" id="toast"></div>
 
 <script>
 // ============ CONFIG ============
 // Reemplaza esta URL por la de tu Web App de Apps Script una vez desplegada
-const GAS_URL = "https://script.google.com/a/macros/ikea.cl/s/AKfycbzBoYUA5qXU6j3qQKqEmj8bQ-ry97zp0vt9iszunJjHtYLU_o-oeILl43EwAeHhdXjE/exec";
+const GAS_URL = "https://script.google.com/a/macros/ikea.cl/s/AKfycbzj25xTVJPTqCPmRcccGGDBGgS50GFpcTnzavLBbKXIj60QlAv5nmrgDUTQwh8nxJbYig/exec";
 const STORAGE_KEY = "incidencias_aduana_v2";
 const QUEUE_KEY = "incidencias_aduana_queue_v2";
 
@@ -312,6 +313,10 @@ document.getElementById('btnSave').addEventListener('click', saveRecord);
 document.getElementById('btnClearForm').addEventListener('click', clearForm);
 
 // ============ INIT ============
+(function(){
+  var m = GAS_URL.match(/\/s\/([^\/]+)\//);
+  document.getElementById('verInfo').textContent = "Versión 30-10 (b) · servidor ..." + (m ? m[1].slice(-6) : "sin configurar") + " · área " + AREA_ORIGEN;
+})();
 renderHistory();
 updateSyncBadge();
 trySync();
